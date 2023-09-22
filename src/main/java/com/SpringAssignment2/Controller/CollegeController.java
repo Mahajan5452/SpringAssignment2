@@ -37,6 +37,10 @@ public class CollegeController {
     }
     @PutMapping("/")
     public College updateCompnyById(@RequestBody College college) {
+       // Optional<College> college1 = collegeRepo.findById(id);
+       // College college2 = college1.get();
+      //  college2.setName(college.getName());
+       // college2.setAddress(college.getAddress());
         return collegeRepo.save(college);
     }
     @DeleteMapping("/{id}")
@@ -53,8 +57,16 @@ public class CollegeController {
 
         return college1.getBranches();
     }
+
+
+    /**
+     * To add branch
+     * @param id
+     * @param branches
+     * @return
+     */
     @PostMapping("/{id}/branches")
-    public Boolean addBr(@PathVariable Long id,@RequestBody Branches branches){
+    public Boolean addBranch(@PathVariable Long id,@RequestBody Branches branches){
         Optional<College> optionalCollege = collegeRepo.findById(id);
         College college=optionalCollege.get();
         branches.setCollege(college);
